@@ -9,7 +9,8 @@ export default function Main() {
     <Router>
         <Switch>
             <Route exact path="/" component={App} />
-            <Route path="/add" component={Add} />
+            <Route key="add" path="/add" component={Add} />
+            <Route key="edit" path="/edit" component={Add} />
         </Switch>
     </Router>
   );

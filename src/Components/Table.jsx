@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../CSS/Table.css";
 const axios = require("axios");
 require('dotenv').config();
@@ -6,17 +7,29 @@ require('dotenv').config();
 export default function Table() {
 
 	const [data, setData] = useState([]);
-	useEffect(() => { getData(); }, []);
+	useEffect(() => { getData();}, []);
+
+	let history = useHistory();
 
 	const getData = async () => {
 		// Fetch the data
 		var mydata = await axios.get(process.env.REACT_APP_FETCH_API)
 		setData(mydata.data.data);
 	}
+	const handleClick = (i) => {
+		if (data[i]) {
+			history.push({
+				pathname: "/edit",
+				state: {
+					data: data[i]
+				}
+			});
+		}
+	}
 	// Organise the data in an array named rows and return it
 	const renderData = () => {
 		var rows = [];
-		for (var i = 0; i < data.length; ++i) {
+		for (let i = 0; i < data.length; ++i) {
 			rows.push(
 				<tr key={i}>
 					<td>{i+1}</td>
@@ -27,7 +40,7 @@ export default function Table() {
 					<td>{data[i].city}</td>
 					<td>{data[i].pincode}</td>
 					<td className="action-btns">
-						<a className="edit-btn" href="/edit">EDIT</a>
+						<a onClick={() => handleClick(i)} className="edit-btn" href="/edit">EDIT</a>
 						&nbsp;
 						<a className="delete-btn" href="/delete">DELETE</a>
 					</td>
@@ -36,8 +49,8 @@ export default function Table() {
 		}
 		return (
 			<tbody>
-			 	{rows}  
-			</tbody>
+				{rows}
+			</tbody>  
 		);
 	}
 	return (
@@ -46,7 +59,6 @@ export default function Table() {
 				<div className="plus-icon">+</div>
 				Add record
 			</a>
-
 			<div className="input-search">
 				<input type="search" className="form-control" placeholder="search" />
 			</div>
