@@ -43,8 +43,6 @@ a:link, a:visited, a:active, a:hover { text-decoration: none; }
 }
 
 .edit-btn {
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
   border-radius: 28px;
   color: #ffffff;
   background: #558fc9;
@@ -52,8 +50,6 @@ a:link, a:visited, a:active, a:hover { text-decoration: none; }
   text-decoration: none;
 }
 .delete-btn {
-	-webkit-border-radius: 28;
-	-moz-border-radius: 28;
 	border-radius: 28px;
 	color: #ffffff;
 	background: #c95555;

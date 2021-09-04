@@ -1,0 +1,38 @@
+.addform {
+	width: 80%;
+	height: 300px;
+	position: relative;
+	top: 25px;
+}
+.addform > div {
+	display: inline-block;
+	padding: 0px 15px 0px 15px;
+}
+.form-control {
+	width: 250px;
+}
+label {
+	color: #6b76e4;
+	font-weight: bold;
+}
+.btns {
+	position: relative;
+	left: 55%;
+	top: 20%;
+}
+.cancel-btn {
+	border-radius: 28px;
+	color: #ffffff;
+	background: #bea6a6;
+	padding: 4px 20px 4px 20px;
+	text-decoration: none;
+}
+.submit-btn {
+	border-radius: 28px;
+	color: #ffffff;
+	background: #6b76e4;
+	padding: 3px 30px 3px 30px;
+	text-decoration: none;
+	border: none;
+}
+.submit-btn:hover { cursor: pointer; }
