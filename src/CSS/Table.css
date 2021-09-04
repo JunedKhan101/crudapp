@@ -39,7 +39,7 @@ a:link, a:visited, a:active, a:hover { text-decoration: none; }
 	display: inline-block;
 	width: 220px;
 	position: absolute;
-	right: 0px;
+	right: 35px;
 }
 
 .edit-btn {

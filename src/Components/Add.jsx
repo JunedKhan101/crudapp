@@ -1,42 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../CSS/Add.css";
+const axios = require("axios");
+require('dotenv').config();
 
 export default function Add() {
-	return(
+	const [fname, setFname] = useState("");
+	const [lname, setLname] = useState("");
+	const [email, setEmail] = useState("");
+	const [state, setState] = useState("");
+	const [city, setCity] = useState("");
+	const [pincode, setPincode] = useState("");
+	const [qstring, setQstring] = useState("");
+
+	var query_string = "";
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		query_string = "?param1=" + email + "&param2=" + fname + "&param3=" + lname +
+		"&param4=" + pincode + "&param5=" + city + "&param6=" + state;
+		addData();
+	}
+	const addData = async () => {
+		var response = await axios.get(`${process.env.REACT_APP_ADD_API}${query_string}`);
+		if (response.status === 200) {
+			window.location = "/";
+		} else {
+			console.log(response);
+		}
+	}
+	return (
 		<div className="Add">
 			<Navbar />
-			<form className="addform">
-				<div class="form-group">
-				    <label for="inputfname">First Name</label>
-				    <input required type="text" class="form-control" id="inputfname" />
+			<form className="addform" onSubmit={handleSubmit}>
+				<div className="form-group">
+				    <label htmlFor="inputfname">First Name</label>
+				    <input onChange={(e) => setFname(e.target.value)} 
+				    required type="text" className="form-control" id="inputfname" />
   				</div>
-				<div class="form-group">
-				    <label for="inputlname">Last Name</label>
-				    <input required type="text" class="form-control" id="inputlname" />
+				<div className="form-group">
+				    <label htmlFor="inputlname">Last Name</label>
+				    <input onChange={(e) => setLname(e.target.value)} 
+				    required type="text" className="form-control" id="inputlname" />
   				</div>
-				<div class="form-group">
-				    <label for="InputEmail1">Email address</label>
-				    <input required type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" />
+				<div className="form-group">
+				    <label htmlFor="InputEmail1">Email address</label>
+				    <input onChange={(e) => setEmail(e.target.value)} 
+				    required type="email" className="form-control" id="InputEmail1" aria-describedby="emailHelp" />
   				</div>
-  				<div class="form-group">
-				    <label for="FormControlSelect1">State</label>
-				    <select class="form-control" id="FormControlSelect1">
-					  <option>--</option>
-				      <option value={1}>Maharashtra</option>
-				      <option value={2}>Utter Pradesh</option>
-				      <option value={3}>Gujurat</option>
-				      <option value={4}>Rajasthan</option>
-				      <option value={5}>Bihar</option>
+  				<div className="form-group">
+				    <label htmlFor="FormControlSelect1">State</label>
+				    <select onChange={(e) => setState(e.target.value)} 
+				    required className="form-control select" id="FormControlSelect1">
+					  <option value="">--</option>
+				      <option value="Maharashtra">Maharashtra</option>
+				      <option value="Utter Pradesh">Utter Pradesh</option>
+				      <option value="Gujurat">Gujurat</option>
+				      <option value="Rajasthan">Rajasthan</option>
+				      <option value="Bihar">Bihar</option>
 				    </select>
   				</div>
-  				<div class="form-group">
-				    <label for="InputCity">City</label>
-				    <input required type="text" class="form-control" id="InputCity" />
+  				<div className="form-group">
+				    <label htmlFor="InputCity">City</label>
+				    <input onChange={(e) => setCity(e.target.value)} 
+				    required type="text" className="form-control" id="InputCity" />
   				</div>
-  				<div class="form-group">
-				    <label for="InputPincode">City</label>
-				    <input required type="text" pattern="\d{5}" class="form-control pincode" id="InputPincode" />
+  				<div className="form-group">
+				    <label htmlFor="InputPincode">Pincode</label>
+				    <input onChange={(e) => setPincode(e.target.value)} 
+				    required type="text" pattern="\d{5}" className="form-control pincode" id="InputPincode" />
   				</div>
   				<br />
   				<div className="btns">

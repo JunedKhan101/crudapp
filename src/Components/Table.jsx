@@ -6,18 +6,12 @@ require('dotenv').config();
 export default function Table() {
 
 	const [data, setData] = useState([]);
-	const [count, setCount] = useState(0);
 	useEffect(() => { getData(); }, []);
 
-	const getData = () => {
-		// Getting the data
-		axios.get(process.env.REACT_APP_FETCH_API)
-		.then((res) => {
-			setData(res.data.data);
-		})
-  		.catch((err) => {
-    		console.log(err);
-  		});
+	const getData = async () => {
+		// Fetch the data
+		var mydata = await axios.get(process.env.REACT_APP_FETCH_API)
+		setData(mydata.data.data);
 	}
 	// Organise the data in an array named rows and return it
 	const renderData = () => {
@@ -40,7 +34,6 @@ export default function Table() {
 				</tr>
 			);
 		}
-		console.log(rows);
 		return (
 			<tbody>
 			 	{rows}  
