@@ -1,29 +1,28 @@
-.table-container {
+.table-container { 
 	width: 95%;
-	position: absolute;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin: 0 auto;
+	position: relative;
+	top: 50px;
 }
+
 .table {
 	box-shadow: 5px 5px 5px #EEEEEE;
 }
+
 .th {
 	background-color: #5663e1;
 	color: #FFFFFF;
 }
-.header {
-	font-weight: normal;
-}
+.header { font-weight: normal; }
+
 .Addrecord-btn {
 	font-size: 22px;
 	position: relative;
 	bottom: 5px;
 	border-bottom: 4px solid #5663e1;
 }
-.Addrecord-btn {
-	text-decoration: none;
-}
+.Addrecord-btn { text-decoration: none; }
+
 .plus-icon {
 	display: inline;
 	font-size: 30px;
@@ -36,7 +35,7 @@ a:link, a:visited, a:active { text-decoration: none; }
 
 .input-search {
 	display: inline-block;
-	width: 200px;
+	width: 220px;
 	position: absolute;
-	right: 5px;
+	right: 0px;
 }

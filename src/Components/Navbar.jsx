@@ -5,7 +5,7 @@ export default function Navbar() {
 	return(
 		<div className="MyNavbar">
 			<nav className="navbar navbar-expand-lg navbar-light">
-			  <a className="navbar-brand" href="#">Task</a>
+			  <a href="/#" className="navbar-brand">Task</a>
 
 			  <div className="home" id="navbarSupportedContent">
 			    <text>Home</text>
