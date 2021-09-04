@@ -1,0 +1,13 @@
+.navbar {
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #000000;
+}
+.navbar-brand {
+	font-weight: bold;
+	font-size: 22px;
+}
+.home {
+	font-size: 20px;
+	position: relative;
+	left: 90%;
+}

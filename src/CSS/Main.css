@@ -1,0 +1,11 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+.main {
+  width: 100%;
+  height: 100%;
+}
