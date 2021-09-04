@@ -12,11 +12,11 @@ export default function Table() {
 	const getData = () => {
 		// Getting the data
 		axios.get(process.env.REACT_APP_FETCH_API)
-		.then((response) => {
-			setData(response.data.data);
+		.then((res) => {
+			setData(res.data.data);
 		})
-  		.catch((error) => {
-    		console.log(error);
+  		.catch((err) => {
+    		console.log(err);
   		});
 	}
 	// Organise the data in an array named rows and return it
@@ -32,9 +32,10 @@ export default function Table() {
 					<td>{data[i].states}</td>
 					<td>{data[i].city}</td>
 					<td>{data[i].pincode}</td>
-					<td>
-						<a className="edit-btn" href="/edit">Edit</a>
-						<a className="delete-btn" href="/delete">Delete</a>
+					<td className="action-btns">
+						<a className="edit-btn" href="/edit">EDIT</a>
+						&nbsp;
+						<a className="delete-btn" href="/delete">DELETE</a>
 					</td>
 				</tr>
 			);
@@ -66,7 +67,7 @@ export default function Table() {
 			      <th className="header" scope="col">State</th>
 			      <th className="header" scope="col">City</th>
 			      <th className="header" scope="col">Pincode</th>
-			      <th className="header" scope="col">Action</th>
+			      <th className="header action" scope="col">Action</th>
 			    </tr>
 			  </thead>
 			  {renderData()}

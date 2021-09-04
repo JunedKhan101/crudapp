@@ -8,7 +8,9 @@
 .table {
 	box-shadow: 5px 5px 5px #EEEEEE;
 }
-
+.action, .action-btns {
+	text-align: center;
+}
 .th {
 	background-color: #5663e1;
 	color: #FFFFFF;
@@ -31,7 +33,7 @@
 	position: relative;
 	top: 2px;
 }
-a:link, a:visited, a:active, a: hover { text-decoration: none; }
+a:link, a:visited, a:active, a:hover { text-decoration: none; }
 
 .input-search {
 	display: inline-block;
@@ -39,12 +41,25 @@ a:link, a:visited, a:active, a: hover { text-decoration: none; }
 	position: absolute;
 	right: 0px;
 }
-.edit-btn { background-color: #558fc9; }
-.delete-btn { background-color: #c95555; }
 
-.edit-btn, .delete-btn {
-	width: 50px;
-	height: 25px;
-	color: #FFFFFF;
-	border-radius: 15px;
+.edit-btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  background: #558fc9;
+  padding: 3px 30px 3px 30px;
+  text-decoration: none;
+}
+.delete-btn {
+	-webkit-border-radius: 28;
+	-moz-border-radius: 28;
+	border-radius: 28px;
+	color: #ffffff;
+	background: #c95555;
+	padding: 3px 30px 3px 30px;
+	text-decoration: none;
+}
+.edit-btn:hover, .delete-btn:hover {
+	text-decoration: none;
 }
