@@ -1,8 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/Table.css";
+const axios = require("axios");
+require('dotenv').config();
 
 export default function Table() {
-	return(
+
+	const [data, setData] = useState([]);
+	const [count, setCount] = useState(0);
+	useEffect(() => { getData(); }, []);
+
+	const getData = () => {
+		// Getting the data
+		axios.get(process.env.REACT_APP_FETCH_API)
+		.then((response) => {
+			setData(response.data.data);
+		})
+  		.catch((error) => {
+    		console.log(error);
+  		});
+	}
+	// Organise the data in an array named rows and return it
+	const renderData = () => {
+		var rows = [];
+		for (var i = 0; i < data.length; ++i) {
+			rows.push(
+				<tr key={i}>
+					<td>{i+1}</td>
+					<td>{data[i].first_name}</td>
+					<td>{data[i].last_name}</td>
+					<td>{data[i].email}</td>
+					<td>{data[i].states}</td>
+					<td>{data[i].city}</td>
+					<td>{data[i].pincode}</td>
+					<td>
+						<a className="edit-btn" href="/edit">Edit</a>
+						<a className="delete-btn" href="/delete">Delete</a>
+					</td>
+				</tr>
+			);
+		}
+		console.log(rows);
+		return (
+			<tbody>
+			 	{rows}  
+			</tbody>
+		);
+	}
+	return (
 		<div className="table-container">
 			<a href="/add" className="Addrecord-btn">
 				<div className="plus-icon">+</div>
@@ -12,7 +56,7 @@ export default function Table() {
 			<div className="input-search">
 				<input type="search" className="form-control" placeholder="search" />
 			</div>
-			<table class="table">
+			<table className="table">
 			  <thead className="th">
 			    <tr>
 			      <th className="header" scope="col">#</th>
@@ -25,38 +69,7 @@ export default function Table() {
 			      <th className="header" scope="col">Action</th>
 			    </tr>
 			  </thead>
-			  <tbody>
-			    <tr>
-			    	<td>1</td>
-			    	<td>Akshay</td>
-			    	<td>Patil</td>
-			    	<td>Akshay@gmail.com</td>
-			    	<td>Goa</td>
-			    	<td>Goa</td>
-			    	<td>45620</td>
-			    	<td>Edit Delete</td>
-			    </tr>
-			    <tr>
-			    	<td>2</td>
-			    	<td>Suraj</td>
-			    	<td>Singh</td>
-			    	<td>Suraj@gmail.com</td>
-			    	<td>Gujrat</td>
-			    	<td>Vapi</td>
-			    	<td>78541</td>
-			    	<td>Edit Delete</td>
-			    </tr>
-			    <tr>
-			    	<td>3</td>
-			    	<td>Nikhil</td>
-			    	<td>Bhamid</td>
-			    	<td>Nikhil@gmail.com</td>
-			    	<td>Maharashtra</td>
-			    	<td>Mumbai</td>
-			    	<td>45415</td>
-			    	<td>Edit Delete</td>
-			    </tr>
-			  </tbody>
+			  {renderData()}
 			</table>
 		</div>
 	);

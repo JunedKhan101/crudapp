@@ -31,11 +31,20 @@
 	position: relative;
 	top: 2px;
 }
-a:link, a:visited, a:active { text-decoration: none; }
+a:link, a:visited, a:active, a: hover { text-decoration: none; }
 
 .input-search {
 	display: inline-block;
 	width: 220px;
 	position: absolute;
 	right: 0px;
+}
+.edit-btn { background-color: #558fc9; }
+.delete-btn { background-color: #c95555; }
+
+.edit-btn, .delete-btn {
+	width: 50px;
+	height: 25px;
+	color: #FFFFFF;
+	border-radius: 15px;
 }

@@ -8,7 +8,7 @@ export default function Navbar() {
 			  <a href="/#" className="navbar-brand">Task</a>
 
 			  <div className="home" id="navbarSupportedContent">
-			    <text>Home</text>
+			    Home
 			  </div>
 			</nav>
 		</div>
