@@ -16,20 +16,22 @@ export default function Table() {
 	useEffect(() => { 
 		getData();
 	}, []);
+
 	useEffect(() => {
-		if (!search) {
-		    setData(data);
-  		}
+		// if (search === "" || search === "undefined" || search === undefined || !search.trim().length) {
+		//     setData(backupdata);
+  // 		}
   		const result = fuse.search(search);
+
 		const matches = [];
-		if (!result.length) {
+		if (!result.length || result === undefined || result === "undefined") {
 		  	setData(backupdata);
 		} else {
 		  	result.forEach(({item}) => {
 		    	matches.push(item);
-		  });
+		  	});
 		  	setData(matches);
-		}
+		}	
 	}, [search]);
 
 	let history = useHistory();
@@ -44,7 +46,7 @@ export default function Table() {
 			setData(res.data.data);
 		else
 			console.log(res);
-		setBackupData(data);
+		setBackupData(res.data.data);
 	}
 	const handleClick = (i) => {
 		if (data[i]) {
@@ -96,8 +98,6 @@ export default function Table() {
 	}
 	const handleSearch = ({ currentTarget }) => {
 		setSearch(currentTarget.value);
-
-		
 	}
 	return (
 		<div className="table-container">
