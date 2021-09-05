@@ -27,7 +27,12 @@ export default function Add(props) {
 		addData();
 	}
 	const addData = async () => {
-		var response = await axios.get(`${process.env.REACT_APP_ADD_API}${query_string}`);
+		var REQ_API = "";
+		if (propdata !== undefined)
+			REQ_API = process.env.REACT_APP_EDIT_API
+		else
+			REQ_API = process.env.REACT_APP_ADD_API
+		var response = await axios.get(`${REQ_API}${query_string}`);
 		if (response.status === 200) {
 			window.location = "/"; // Redirect to the home page
 		} else {

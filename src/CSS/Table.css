@@ -56,6 +56,28 @@ a:link, a:visited, a:active, a:hover { text-decoration: none; }
 	padding: 3px 30px 3px 30px;
 	text-decoration: none;
 }
+.cancel-btn {
+	border-radius: 28px;
+	color: #ffffff;
+	background: #bea6a6;
+	padding: 4px 20px 4px 20px;
+	text-decoration: none;
+}
+.delete-btn, .cancel-btn { border: none; }
+.delete-btn, .cancel-btn { cursor: pointer; }
 .edit-btn:hover, .delete-btn:hover {
 	text-decoration: none;
 }
+
+.modal-title { 
+	text-align: center; 
+	color: #5663e1;
+	font-weight: bold;
+}
+.modal-footer {
+	position: relative;
+	right: 130px;
+}
+.modal-header { border-bottom: 0 none; }
+
+.modal-footer { border-top: 0 none; }

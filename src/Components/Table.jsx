@@ -7,6 +7,8 @@ require('dotenv').config();
 export default function Table() {
 
 	const [data, setData] = useState([]);
+	const [name, setName] = useState("");
+	const [delID, setDelID] = useState("");
 	useEffect(() => { getData();}, []);
 
 	let history = useHistory();
@@ -26,6 +28,17 @@ export default function Table() {
 			});
 		}
 	}
+	const handleDelete = (i) => {
+		setName(data[i].first_name); 
+		setDelID(data[i].email);
+	}
+	const handleDeleteUser = async () => {
+		var res = await axios.get(`${process.env.REACT_APP_DELETE_API}?param1=${delID}`)
+		if (res.status === 200 && res.data.Success === true)
+			window.location = "/";
+		else
+			console.log(res);
+	}
 	// Organise the data in an array named rows and return it
 	const renderData = () => {
 		var rows = [];
@@ -42,7 +55,7 @@ export default function Table() {
 					<td className="action-btns">
 						<a onClick={() => handleClick(i)} className="edit-btn" href="/edit">EDIT</a>
 						&nbsp;
-						<a className="delete-btn" href="/delete">DELETE</a>
+						<a onClick={() => handleDelete(i) } className="delete-btn" href="#" data-toggle="modal" data-target="#exampleModalCenter">DELETE</a>
 					</td>
 				</tr>
 			);
@@ -55,6 +68,20 @@ export default function Table() {
 	}
 	return (
 		<div className="table-container">
+			<div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			    <div className="modal-dialog modal-dialog-centered" role="document">
+			        <div className="modal-content">
+			            <div className="modal-body">
+			                <h2 className="modal-title">Are you sure to delete {name}</h2>
+			            </div>
+			            <div className="modal-footer">
+			                <button onClick={handleDeleteUser} type="button" className="delete-btn">DELETE</button>
+			                <button type="button" className="cancel-btn" data-dismiss="modal">Cancel</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
 			<a href="/add" className="Addrecord-btn">
 				<div className="plus-icon">+</div>
 				Add record
