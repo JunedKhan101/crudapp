@@ -13,6 +13,10 @@ Run `yarn` or `npm install` to install all the pakages
 
 Major pakages are used are fuse.js for searching and axios
 
+**If you're facing cors errors download this chorme extension to bypass it: https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc**
+
+__Handling CORS in the server side is the best practice__
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
