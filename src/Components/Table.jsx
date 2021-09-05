@@ -15,7 +15,6 @@ export default function Table() {
 	
 	useEffect(() => { 
 		getData();
-		setBackupData(data);
 	}, []);
 	useEffect(() => {
 		if (!search) {
@@ -24,12 +23,12 @@ export default function Table() {
   		const result = fuse.search(search);
 		const matches = [];
 		if (!result.length) {
-		  setData(backupdata);
+		  	setData(backupdata);
 		} else {
-		  result.forEach(({item}) => {
-		    matches.push(item);
+		  	result.forEach(({item}) => {
+		    	matches.push(item);
 		  });
-		  setData(matches);
+		  	setData(matches);
 		}
 	}, [search]);
 
@@ -45,6 +44,7 @@ export default function Table() {
 			setData(res.data.data);
 		else
 			console.log(res);
+		setBackupData(data);
 	}
 	const handleClick = (i) => {
 		if (data[i]) {
