@@ -73,11 +73,23 @@ a:link, a:visited, a:active, a:hover { text-decoration: none; }
 	text-align: center; 
 	color: #5663e1;
 	font-weight: bold;
+	position: relative;
+	top: 30%;
 }
 .modal-footer {
 	position: relative;
-	right: 130px;
+	right: 35%;
 }
-.modal-header { border-bottom: 0 none; }
+.modal-header { 
+	border-bottom: 0 none;
+}
 
-.modal-footer { border-top: 0 none; }
+.modal-footer { 
+	border-top: 0 none; 
+	position: relative;
+	bottom: 30%;
+}
+.modal-content { 
+	height: 400px;
+}
+.modal-dialog { width: 800px; }

@@ -3,8 +3,8 @@
 	border-bottom: 1px solid #000000;
 }
 .navbar-brand {
-	color: #707070;
 	font-size: 22px;
+	font-weight: 900;
 }
 .home {
 	font-size: 20px;

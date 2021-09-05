@@ -57,7 +57,7 @@ export default function Table() {
 		}
 	}
 	const handleDelete = (i) => {
-		setName(data[i].first_name); 
+		setName(data[i].first_name + " " + data[i].last_name); 
 		setDelID(data[i].email);
 	}
 	const handleDeleteUser = async () => {
@@ -102,7 +102,7 @@ export default function Table() {
 	return (
 		<div className="table-container">
 			<div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			    <div className="modal-dialog modal-dialog-centered" role="document">
+			    <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
 			        <div className="modal-content">
 			            <div className="modal-body">
 			                <h2 className="modal-title">Are you sure to delete {name}</h2>
