@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
+import Fuse from "fuse.js";
 import "../CSS/Table.css";
 const axios = require("axios");
 require('dotenv').config();
@@ -7,16 +8,43 @@ require('dotenv').config();
 export default function Table() {
 
 	const [data, setData] = useState([]);
+	const [backupdata, setBackupData] = useState([]);
 	const [name, setName] = useState("");
 	const [delID, setDelID] = useState("");
-	useEffect(() => { getData();}, []);
+	const [search, setSearch] = useState("");
+	
+	useEffect(() => { 
+		getData();
+		setBackupData(data);
+	}, []);
+	useEffect(() => {
+		if (!search) {
+		    setData(data);
+  		}
+  		const result = fuse.search(search);
+		const matches = [];
+		if (!result.length) {
+		  setData(backupdata);
+		} else {
+		  result.forEach(({item}) => {
+		    matches.push(item);
+		  });
+		  setData(matches);
+		}
+	}, [search]);
 
 	let history = useHistory();
+	const fuse = new Fuse(data, {
+  		keys: ["first_name", "email"],
+	});
 
 	const getData = async () => {
 		// Fetch the data
-		var mydata = await axios.get(process.env.REACT_APP_FETCH_API)
-		setData(mydata.data.data);
+		var res = await axios.get(process.env.REACT_APP_FETCH_API)
+		if (res.status === 200 || res.data.Success === true)
+			setData(res.data.data);
+		else
+			console.log(res);
 	}
 	const handleClick = (i) => {
 		if (data[i]) {
@@ -55,7 +83,7 @@ export default function Table() {
 					<td className="action-btns">
 						<a onClick={() => handleClick(i)} className="edit-btn" href="/edit">EDIT</a>
 						&nbsp;
-						<a onClick={() => handleDelete(i) } className="delete-btn" href="#" data-toggle="modal" data-target="#exampleModalCenter">DELETE</a>
+						<button onClick={() => handleDelete(i) } className="delete-btn" data-toggle="modal" data-target="#exampleModalCenter">DELETE</button>
 					</td>
 				</tr>
 			);
@@ -65,6 +93,11 @@ export default function Table() {
 				{rows}
 			</tbody>  
 		);
+	}
+	const handleSearch = ({ currentTarget }) => {
+		setSearch(currentTarget.value);
+
+		
 	}
 	return (
 		<div className="table-container">
@@ -87,7 +120,7 @@ export default function Table() {
 				Add record
 			</a>
 			<div className="input-search">
-				<input type="search" className="form-control" placeholder="search" />
+				<input onChange={handleSearch} value={search} type="search" className="form-control" placeholder="search" />
 			</div>
 			<table className="table">
 			  <thead className="th">
